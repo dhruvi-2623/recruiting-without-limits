@@ -1,103 +1,112 @@
-import Image from "next/image";
+"use client";
+import { useState } from "react";
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [aiOut, setAiOut] = useState<null | { headline: string; bullets: string[]; fitScore?: number; mock?: boolean }>(null);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+  async function joinWaitlist(e: React.FormEvent) {
+    e.preventDefault();
+    await fetch("/api/subscribe", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email }),
+    });
+    setEmail("");
+    alert("You're on the waitlist.");
+  }
+
+  async function askAI(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = e.currentTarget as HTMLFormElement;
+    const job = (form.elements.namedItem("job") as HTMLTextAreaElement).value;
+    const candidate = (form.elements.namedItem("candidate") as HTMLTextAreaElement).value;
+    setLoading(true);
+    setAiOut(null);
+    try {
+      const r = await fetch("/api/ai-suggest", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ job, candidate }),
+      });
+      const data = await r.json();
+      setAiOut(data);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  return (
+    <div>
+      {/* Hero */}
+      <section className="px-6 pt-20 pb-14 max-w-3xl mx-auto">
+        <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-gray-900">Recruiting Without Limits.</h1>
+        <p className="mt-3 text-xl">Speed and Scale.</p>
+        <p className="mt-6 leading-7 text-gray-700">
+          We’re building a new model for recruitment. One that combines revenue sharing, a marketing engine, a competitive broker
+          community, and an AI-driven learning platform. This is recruitment rewritten for the modern era.
+        </p>
+
+        <form onSubmit={joinWaitlist} className="mt-8 flex gap-3">
+          <input
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            name="email"
+            type="email"
+            required
+            placeholder="you@company.com"
+            className="border rounded-xl px-4 py-3 w-full focus:outline-none focus:ring-2 focus:ring-black"
+            aria-label="Email address"
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          <button type="submit" className="rounded-xl px-5 py-3 bg-black text-white hover:scale-105 transition-transform duration-200">Join waitlist</button>
+        </form>
+      </section>
+
+      {/* Model preview */}
+      <section id="model" className="px-6 pb-24 max-w-6xl mx-auto grid md:grid-cols-3 gap-6">
+        {["Revenue Sharing","Marketing Engine","Broker Community"].map((t) => (
+          <div key={t} className="border rounded-2xl p-6">
+            <h3 className="font-medium">{t}</h3>
+            <p className="mt-2 text-gray-700">
+              {t === "Revenue Sharing" && "Transparent splits that align incentives."}
+              {t === "Marketing Engine" && "Always-on campaigns that compound reach."}
+              {t === "Broker Community" && "A competitive network that fuels speed."}
+            </p>
+          </div>
+        ))}
+      </section>
+
+      {/* AI demo – tiny mock of "Broker Copilot" */}
+      <section className="px-6 pb-24 max-w-4xl mx-auto">
+        <h2 className="text-2xl font-semibold">AI: Candidate Fit & Brief Helper</h2>
+        <p className="mt-2 text-gray-700">Paste a job summary and a candidate profile. Get a headline and 3 bullets.</p>
+        <form onSubmit={askAI} className="mt-6 grid md:grid-cols-2 gap-4">
+          <textarea name="job" placeholder="Job summary..." className="border rounded-2xl p-4 min-h-[160px]" required />
+          <textarea name="candidate" placeholder="Candidate profile..." className="border rounded-2xl p-4 min-h-[160px]" required />
+          <div className="md:col-span-2 flex items-center gap-3">
+            <button type="submit" className="rounded-xl px-5 py-3 bg-black text-white" disabled={loading}>
+              {loading ? "Thinking..." : "Get AI Suggestions"}
+            </button>
+            <span className="text-sm text-gray-500">No key? Route returns a realistic mock.</span>
+          </div>
+        </form>
+
+        {aiOut && (
+          <div className="mt-6 border rounded-2xl p-6">
+            <div className="text-sm text-gray-500 mb-2">{aiOut.mock ? "Mock output" : "AI output"}</div>
+            <h3 className="text-xl font-medium">{aiOut.headline}</h3>
+            <ul className="mt-3 list-disc ml-5 space-y-1">
+              {aiOut.bullets?.map((b, i) => <li key={i}>{b}</li>)}
+            </ul>
+            {typeof aiOut.fitScore === "number" && (
+              <div className="mt-3 text-sm">Fit score: <span className="font-medium">{aiOut.fitScore}/100</span></div>
+            )}
+          </div>
+        )}
+      </section>
     </div>
   );
 }
