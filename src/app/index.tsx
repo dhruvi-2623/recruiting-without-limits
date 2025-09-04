@@ -16,7 +16,7 @@ export default function Home() {
         </h1>
         <p className="mt-3 text-xl">Speed and Scale.</p>
         <p className="mt-6 leading-7 text-gray-700">
-          We're building a new model for recruitment. One that combines revenue sharing,
+          We are building a new model for recruitment. One that combines revenue sharing,
           a marketing engine, a competitive broker community, and an AI-driven learning
           platform. This is recruitment rewritten for the modern era.
         </p>
