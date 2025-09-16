@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Recruiting Without Limits
 
-## Getting Started
+🚀 Recruiting Without Limits is a lightweight and responsive website designed to showcase the power of simplicity in web development. The project highlights modern UI practices, clear navigation, and structured layouts—built with the goal of being easy to understand for both technical and non-technical users.
 
-First, run the development server:
+🌐 Live Demo: [View on Render](https://recruiting-without-limits-woad.vercel.app/)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+💻 GitHub Repo: [View Repository](https://github.com/dhruvi-2623/recruiting-without-limits)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+📖 Overview
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The site demonstrates how a minimal yet effective web presence can be created without a complex backend or heavy infrastructure. Its purpose is to provide a smooth user experience while clearly presenting sections like:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Home – Introduction and highlights
+Community – A leaderboard mockup to encourage collaboration
+AI Section – Roadmap and a simple AI-powered suggestion form
 
-## Learn More
+✨ Features
 
-To learn more about Next.js, take a look at the following resources:
+📱 Fully responsive design (works on desktop, tablet, and mobile)
+🎨 Clean and modern UI for easy navigation
+🧩 Simple structure—no complex backend required
+🤖 AI suggestion form for interactive engagement
+🛠 Tech Stack
+Frontend: React.js, HTML, CSS
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Hosting/Deployment: Render (connected via GitHub for seamless deployment)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+🚀 Getting Started (For Developers)
 
-## Deploy on Vercel
+If you’d like to run the project locally:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# Clone the repository
+git clone https://github.com/your-repo-link.git  
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# Navigate into the project folder
+cd recruiting-without-limits  
+
+# Install dependencies
+npm install  
+
+# Start the development server
+npm start  
+
+🎯 Purpose
+
+This project was built to show that you don’t need a heavy backend or complicated setup to deliver a clear, user-friendly website. It’s a demonstration of:
+Modern UI design principles
+Deploying apps with Render + GitHub integration
+
+Creating a project understandable to both technical and non-technical users
+
+📬 Contact
+👩‍💻 Author: Dhruvi Patel
+🔗 www.linkedin.com/in/dhruvipatel2623| https://github.com/dhruvi-2623/
