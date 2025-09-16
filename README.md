@@ -1,4 +1,4 @@
-Recruiting Without Limits
+# Recruiting Without Limits
 
 🚀 Recruiting Without Limits is a lightweight and responsive website designed to showcase the power of simplicity in web development. The project highlights modern UI practices, clear navigation, and structured layouts—built with the goal of being easy to understand for both technical and non-technical users.
 
@@ -30,7 +30,7 @@ Hosting/Deployment: Render (connected via GitHub for seamless deployment)
 If you’d like to run the project locally:
 
 # Clone the repository
-git clone https://github.com/your-repo-link.git  
+git clone [(https://github.com/dhruvi-2623/recruiting-without-limits.git) ]
 
 # Navigate into the project folder
 cd recruiting-without-limits  
@@ -51,4 +51,3 @@ Creating a project understandable to both technical and non-technical users
 
 📬 Contact
 👩‍💻 Author: Dhruvi Patel
-🔗 www.linkedin.com/in/dhruvipatel2623| https://github.com/dhruvi-2623/
